@@ -1,0 +1,33 @@
+{
+  "common": {
+    "name": "coe",
+    "version": "0.0.1",
+    "title": "CAN over Ethernet (CoE)",
+    "desc": "Receives and processes CAN over Ethernet data from Technische Alternative C.M.I.",
+    "authors": [
+      "Your Name <you@example.com>"
+    ],
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "main": "main.js",
+    "icon": "coe.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/your-github-username/iobroker.coe/master/admin/coe.png",
+    "readme": "https://github.com/your-github-username/iobroker.coe/blob/master/README.md",
+    "loglevel": "info",
+    "mode": "daemon",
+    "type": "protocol",
+    "compact": true,
+    "materialize": true,
+    "dependencies": [
+      {
+        "js-controller": ">=2.0.0"
+      }
+    ]
+  },
+  "native": {
+    "cmi_ips": []
+  },
+  "objects": [],
+  "instanceObjects": []
+}

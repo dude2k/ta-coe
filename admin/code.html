@@ -1,0 +1,62 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../../css/adapter.css"/>
+    <script type="text/javascript" src="../../lib/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../../socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="../../js/translate.js"></script>
+    <script type="text/javascript" src="../../js/adapter-settings.js"></script>
+    <script type="text/javascript" src="words.js"></script>
+    <script type="text/javascript">
+        function load(settings, onChange) {
+            if (!settings) return;
+            $('.value').each(function () {
+                var $key = $(this);
+                var id = $key.attr('id');
+                if ($key.attr('type') === 'checkbox') {
+                    $key.prop('checked', settings[id]).on('change', function () {
+                        onChange();
+                    });
+                } else {
+                    $key.val(settings[id]).on('change', function () {
+                        onChange();
+                    }).on('keyup', function () {
+                        onChange();
+                    });
+                }
+            });
+            onChange(false);
+        }
+
+        function save(callback) {
+            var obj = {};
+            $('.value').each(function () {
+                var $this = $(this);
+                if ($this.attr('type') === 'checkbox') {
+                    obj[$this.attr('id')] = $this.prop('checked');
+                } else {
+                    obj[$this.attr('id')] = $this.val();
+                }
+            });
+            callback(obj);
+        }
+    </script>
+</head>
+<body>
+    <div class="m adapter-container">
+        <div class="row">
+            <div class="col s12">
+                <p class="translate">Enter the IP addresses of the sending C.M.I. devices here.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m4 l2">
+                <label for="cmi_ips" class="translate">C.M.I. IP Addresses</label>
+            </div>
+            <div class="col s12 m8 l10">
+                <input class="value" id="cmi_ips" type="text" placeholder="e.g. 192.168.1.10,192.168.1.11" />
+                <span class="helper-text translate">Comma-separated list of IP addresses</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
